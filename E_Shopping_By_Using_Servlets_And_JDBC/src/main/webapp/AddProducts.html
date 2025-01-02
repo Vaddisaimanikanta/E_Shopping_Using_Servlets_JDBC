@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        height: 100vh; /* Ensure full viewport height */
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+    }
+    h1 {
+        color: #333;
+    }
+    .form-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px; /* Limit max width */
+    }
+    label {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+    select, input {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+<center>
+<h1>Add Product Deatails</h1>
+<form action="addproducts">
+<label>CATEGORYS</label>
+<select id="category" name="category" onchange="updateOptions()">
+<option>SELECT</option>
+<option value="Mobile">MOBILE</option>
+<option value="MEN">MEN</option>
+<option value="WOMEN">WOMEN</option>
+<option value="Electronics">Electronics</option>
+</select>
+<br>
+
+<label>Brand</label>
+<select id="brand" name="brand">
+<option>SELECT</option>
+</select>
+<br>
+<br>
+<input placeholder="Enter Product Name" name="productname">
+<br>
+<input placeholder="Enter Product Price" name="price">
+<br>
+<input placeholder="Enter Product Quantity" name="quantity">
+<br>
+<input placeholder="Enter Product Discount" name="discount">
+<br>
+<input type="submit">
+</form>
+</center>
+
+<script type="text/javascript">
+	const brandsByCategory = {
+		Mobile:["Iphone","Samsung","realme"],
+		MEN:["Adidas","Puma","Wrong"],
+		WOMEN:["Dress","Shoes","T-Shirt"],
+		Electronics:["AC","TV","HomeTheater"],
+			
+	};
+	function updateOptions()
+	{
+		const categorySelect = document.getElementById("category");
+		const brandSelection = document.getElementById("brand");
+		const selectedCategory = categorySelect.value;
+		
+		brandSelection.innerHTML = "<option value=''>Select</option>";
+		
+		if(selectedCategory && brandsByCategory[selectedCategory])
+		{
+			brandsByCategory[selectedCategory].forEach(brand=>{
+				const option=document.createElement("option");
+				option.value=brand;
+				option.textContent=brand;
+				brandSelection .appendChild(option);
+			});
+		}
+	}
+</script>
+</body>
+</html>
